@@ -27,17 +27,17 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-58322df1d464471832d1.js"
+    "url": "webpack-runtime-b893b506b1a5b88be350.js"
   },
   {
     "url": "framework-cdce76d1477a651fcfdd.js"
   },
   {
-    "url": "app-4f07f744c9f5571ac8eb.js"
+    "url": "app-2e82a8a9cefcf500c990.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "2de03ea2828c95a2c889bd62ab0c3698"
+    "revision": "58c10d98d45b9c3e14d74f9500d15131"
   },
   {
     "url": "manifest.webmanifest",
@@ -151,7 +151,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/beefreevpn/app-4f07f744c9f5571ac8eb.js`))) {
+  if (!resources || !(await caches.match(`/beefreevpn/app-2e82a8a9cefcf500c990.js`))) {
     return await fetch(event.request)
   }
 
