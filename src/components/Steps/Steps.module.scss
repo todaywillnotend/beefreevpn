@@ -1,0 +1,148 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.stepsSection {
+  background-color: $white; // Фон белый, как на макете
+  position: relative; // Для позиционирования .decorativeText
+  overflow: hidden; // Чтобы декоративный текст не создавал горизонтальный скролл
+  border-bottom: 1px solid $border-color;
+}
+
+.stepsContainer {
+  // Можно использовать глобальный .container или сделать его чуть уже, если нужно
+  // max-width: 1100px; // Пример
+}
+
+.stepsHeader {
+  text-align: center;
+  margin-bottom: $spacer * 3.5; // Отступ от заголовка до шагов
+
+  @include respond-to(md) {
+    margin-bottom: $spacer * 4.5;
+  }
+}
+
+.sectionTitle {
+  font-size: 1.5rem; // 32px
+  color: $text-dark;
+  font-weight: 600; // Semibold
+  line-height: 1.3;
+  margin-bottom: 0; // Убираем нижний отступ, если нет subheading
+
+  @include respond-to(md) {
+    font-size: 2.25rem; // 36px
+  }
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: 1fr; // Одна колонка на мобильных
+  gap: $spacer * 3; // Отступ между шагами на мобильных
+  position: relative; // Для позиционирования .stepConnector
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(3, 1fr); // Три колонки на десктопе
+    align-items: flex-start; // Выравнивание по верху, если контент разной высоты
+    gap: $spacer * 2; // Горизонтальный отступ между шагами на десктопе
+  }
+}
+
+.stepItem {
+  display: flex;
+  flex-direction: column; // Элементы внутри шага (круг, контент) идут сверху вниз
+  align-items: center; // Центрируем круг и контент по горизонтали
+  text-align: center; // Текст внутри контента тоже по центру
+  position: relative; // Для .stepConnector, если он будет рисоваться из этого элемента
+  padding: 0 $spacer; // Небольшие боковые отступы на мобильных, чтобы текст не прилипал
+
+  @include respond-to(md) {
+    padding: 0; // Убираем боковые отступы на десктопе
+  }
+}
+
+.stepNumberCircle {
+  width: 56px; // Размер круга
+  height: 56px;
+  border-radius: 50%;
+  background-color: $primary-color; // Желтый фон
+  color: $white;
+  font-size: 1.5rem; // 24px - размер цифры
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $spacer; // Отступ от круга до заголовка шага
+  position: relative;
+  z-index: 2; // Чтобы был над коннектором
+
+  @include respond-to(md) {
+    width: 80px;
+    height: 80px;
+    font-size: 3rem;
+  }
+}
+
+.stepConnector {
+  display: none; // По умолчанию скрыт (на мобильных нет)
+
+  @include respond-to(md) {
+    // Отображается только на десктопе
+    display: block;
+    height: 2px; // Толщина линии
+    // Пунктирная линия
+    background-image: linear-gradient(
+      to right,
+      rgba($text-medium, 0.5) 50%,
+      transparent 50%
+    );
+    background-position: top;
+    background-size: 12px 2px; // Длина штриха и пробела
+    background-repeat: repeat-x;
+
+    position: absolute;
+    top: 40px;
+    left: calc(50% + 28px + 1.5rem);
+    width: calc(100% - 5rem);
+    z-index: 1; // Под кругом
+    transform: translateY(-50%); // Точно центрировать по вертикали
+  }
+}
+
+.stepContent {
+  // Обертка для заголовка и описания, если нужно дополнительное управление
+}
+
+.stepTitle {
+  font-size: 1.125rem; // 18px
+  font-weight: 600; // Semibold
+  color: $text-dark;
+  margin-bottom: calc($spacer / 1.5); // Отступ от заголовка до описания
+
+  @include respond-to(md) {
+    font-size: 2rem;
+  }
+}
+
+.stepDescription {
+  font-size: 0.9rem; // 14.4px
+  color: $text-medium;
+  line-height: 1.6;
+  max-width: 280px; // Ограничение ширины текста описания, чтобы не был слишком широким
+  margin-left: auto;
+  margin-right: auto;
+
+  @include respond-to(md) {
+    font-size: 1.125rem;
+    max-width: none; // Снимаем ограничение на десктопе, если ячейка грида уже узкая
+  }
+}
+
+.stepLink {
+  color: $text-dark;
+  font-weight: 500;
+  text-decoration: underline;
+  &:hover {
+    color: $primary-color;
+    text-decoration: underline;
+  }
+}

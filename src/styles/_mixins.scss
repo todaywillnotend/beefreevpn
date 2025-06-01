@@ -1,0 +1,95 @@
+@import "./variables";
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint `#{$breakpoint}` not found in $breakpoints map. Available breakpoints: #{map-keys($breakpoints)}";
+  }
+}
+
+// Helper map for breakpoints
+$breakpoints: (
+  "sm": $bp-sm,
+  "md": $bp-md,
+  "lg": $bp-lg,
+  "xl": $bp-xl,
+);
+
+// Container mixin
+@mixin container-fluid {
+  width: 100%;
+  padding-right: $spacer;
+  padding-left: $spacer;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@mixin container {
+  @include container-fluid;
+
+  @include respond-to(sm) {
+    max-width: $bp-sm - 2px; // Немного меньше для padding
+  }
+  @include respond-to(md) {
+    max-width: $bp-md - 2px;
+  }
+  @include respond-to(lg) {
+    max-width: $bp-lg - 2px;
+  }
+  @include respond-to(xl) {
+    max-width: $bp-xl - 2px;
+  }
+}
+
+// Common button style
+@mixin btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc($spacer * 0.75) calc($spacer * 1.5);
+  font-size: $font-size-base;
+  font-weight: 500;
+  line-height: $line-height-base;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: $border-radius-lg;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: 0;
+    // box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.5);
+  }
+
+  svg {
+    margin-left: calc($spacer / 2);
+    width: 1em;
+    height: 1em;
+  }
+}
+
+@mixin btn-primary {
+  @include btn;
+  color: $black; // Черный текст на желтом для лучшего контраста
+  background-color: $primary-color;
+  border-color: $primary-color;
+
+  &:hover {
+    color: $black;
+    background-color: $primary-hover-color;
+    border-color: darken($primary-hover-color, 5%);
+  }
+}

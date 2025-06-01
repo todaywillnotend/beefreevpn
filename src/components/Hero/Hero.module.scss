@@ -1,0 +1,145 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(95vh - 80px); // 80px - примерная высота шапки
+  text-align: center;
+  position: relative;
+  background-color: $white; // Фон по макету
+  border-bottom: 1px solid $border-color;
+}
+
+.heroContent {
+  max-width: 800px; // Немного больше места для контента
+}
+
+.beeIcon {
+  width: 106px;
+  height: 106px;
+
+  margin-top: 5rem;
+
+  @include respond-to(md) {
+    display: none;
+  }
+}
+
+.title {
+  font-size: 3.5rem;
+  color: $primary-color; // Желтый цвет, как на макете
+  font-weight: 800; // Extra-bold
+  letter-spacing: -0.02em; // Небольшое сжатие букв
+  line-height: 1.1;
+
+  @include respond-to(md) {
+    font-size: 7rem; // Очень крупный на десктопе
+  }
+  @include respond-to(sm) {
+    font-size: 7rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.375rem; // 22px
+  color: $text-dark; // Темный
+  font-weight: 600; // Semibold
+  margin-top: $spacer * 3;
+  line-height: 1.45;
+  max-width: 600px; // Ограничиваем ширину подзаголовка
+  margin-left: auto;
+  margin-right: auto;
+
+  @include respond-to(md) {
+    font-size: 2.5rem; // 28px
+  }
+
+  @include respond-to(sm) {
+    font-size: 2.5rem; // 24px
+  }
+}
+
+.ctaButton {
+  @include btn; // Базовые стили кнопки
+  background-color: $primary-color; // Желтый фон
+  color: $text-black; // Черный текст
+  border-color: $primary-color; // Желтая рамка (или transparent, если фон и так желтый)
+  padding: calc($spacer * 0.9) calc($spacer * 2.5); // Уточненные паддинги
+  font-size: 1rem;
+  font-weight: 500; // Medium
+  border-radius: $border-radius-lg; // Более скругленные углы, как на макете
+  box-shadow: 0 4px 12px rgba($primary-color, 0.25); // Легкая тень от кнопки
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out,
+    background-color 0.2s ease;
+
+  margin-top: $spacer * 3;
+
+  &:hover {
+    background-color: darken($primary-color, 5%);
+    box-shadow: 0 6px 16px rgba($primary-color, 0.3);
+    transform: translateY(-2px);
+    color: $text-black; // Убедимся, что цвет текста не меняется при наведении, если он уже черный
+  }
+
+  // Стили для иконки внутри кнопки
+  .ctaIcon {
+    width: 18px;
+    height: 18px;
+    margin-left: $spacer * 0.75; // Отступ иконки от текста
+    vertical-align: middle;
+  }
+}
+
+.scrollIndicator {
+  // margin-top: $spacer * 15; // Отступ от кнопки CTA
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $text-medium; // Серый текст
+  font-size: 0.875rem; // 14px
+  opacity: 0.8; // Немного прозрачный
+
+  p {
+    margin-bottom: $spacer * 0.75; // Отступ текста от стрелки
+  }
+
+  .scrollIcon {
+    width: 22px;
+    height: 22px;
+    color: $primary-color; // Желтая стрелка (если SVG использует currentColor)
+    // fill: $primary-color; // Или так, если нужно явно
+    animation: bounce 2s infinite;
+
+    @include respond-to(md) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  // Скрываем на очень маленьких экранах, если мешает
+  @media (max-width: #{$bp-sm - 100px}) {
+    // ~476px
+    // display: none;
+  }
+}
+
+@keyframes bounce {
+  // Анимация для .scrollIcon
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
+  }
+}

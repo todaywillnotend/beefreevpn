@@ -1,0 +1,184 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: $spacer $spacer * 1.5;
+  background-color: $white;
+  border-bottom: 1px solid $border-color-light;
+  transition: box-shadow 0.3s ease-in-out;
+
+  &.scrolled {
+    box-shadow: 0 2px 6px rgba($black, 0.06);
+  }
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  z-index: 10;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  @include respond-to(md) {
+    margin-right: 5rem;
+  }
+}
+
+.logoIcon {
+  height: 32px;
+  width: 32px;
+
+  @include respond-to(md) {
+    height: 60px;
+    width: 60px;
+  }
+}
+
+.navigation {
+  display: none;
+  gap: $spacer * 2;
+
+  @include respond-to(md) {
+    display: flex;
+    align-items: center;
+  }
+
+  &.open {
+    @media (max-width: #{$bp-md - 1px}) {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: $white;
+      padding: $spacer $spacer * 1.5;
+      box-shadow: 0 4px 6px rgba($black, 0.1);
+      z-index: 5;
+    }
+  }
+}
+
+.navButton {
+  padding: calc($spacer / 2) 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: $text-medium;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+  position: relative;
+
+  &:hover {
+    color: $text-dark;
+  }
+
+  &.active {
+    color: $text-dark;
+    font-weight: 500;
+  }
+
+  @media (max-width: #{$bp-md - 1px}) {
+    width: 100%;
+    text-align: left;
+    padding: $spacer $spacer * 0.5;
+    &:not(:last-child) {
+      border-bottom: 1px solid $border-color-light;
+    }
+  }
+}
+
+.telegramButton {
+  display: none;
+  align-items: center;
+  text-decoration: none;
+  background-color: transparent;
+  color: $text-medium;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  padding: calc($spacer * 0.5) $spacer;
+  font-size: 0.9rem;
+  font-weight: 400;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
+  white-space: nowrap;
+
+  @include respond-to(md) {
+    display: inline-flex;
+  }
+
+  &:hover {
+    background-color: $background-light;
+    color: $text-dark;
+    border-color: darken($border-color, 5%);
+
+    svg {
+      fill: $text-dark;
+    }
+  }
+
+  // Стили для иконки внутри кнопки .telegramButton
+  // Предполагаем, что ваш <TelegramIcon /> рендерит <svg>
+  svg {
+    width: 16px;
+    height: 16px;
+    margin-right: calc($spacer / 3);
+    fill: $text-medium; // Иконка серая по умолчанию
+    transition: fill 0.2s ease;
+  }
+}
+
+.menuToggle {
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: calc($spacer / 2);
+  z-index: 10;
+
+  .hamburgerLine {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: $text-dark;
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.2s ease,
+      background-color 0.2s ease;
+    border-radius: 1px;
+  }
+
+  @include respond-to(md) {
+    display: none;
+  }
+
+  &:hover .hamburgerLine {
+    background-color: $primary-color;
+  }
+
+  &.open {
+    .hamburgerLine:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburgerLine:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburgerLine:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+}

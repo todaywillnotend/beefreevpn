@@ -1,0 +1,103 @@
+@import "./variables";
+@import "./mixins";
+
+html {
+  font-size: $font-size-base;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-sans;
+  line-height: $line-height-base;
+  color: $text-dark;
+  background-color: $white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: calc($spacer / 2);
+  font-weight: 600; // semibold
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+} // 40px
+h2 {
+  font-size: 2rem;
+} // 32px
+h3 {
+  font-size: 1.5rem;
+} // 24px
+h4 {
+  font-size: 1.25rem;
+} // 20px
+
+p {
+  margin-top: 0;
+  margin-bottom: $spacer;
+  color: $text-medium;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  background-color: transparent;
+
+  &:hover {
+    color: darken($primary-color, 10%);
+    text-decoration: underline;
+  }
+}
+
+.container {
+  @include container;
+}
+
+// Утилитарный класс для визуально скрытых элементов (доступность)
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap; // Добавлено, чтобы охватить больше случаев
+}
+
+// Общий стиль для секций
+.section-padding {
+  padding-top: $spacer * 3;
+  padding-bottom: $spacer * 3;
+  scroll-margin-top: 3rem;
+
+  @include respond-to(md) {
+    scroll-margin-top: 5rem;
+    padding-top: $spacer * 5;
+    padding-bottom: $spacer * 5;
+  }
+}
+
+// Button styles that can be used globally with CSS Modules logic
+.btn {
+  @include btn;
+}
+.btn-primary {
+  @include btn-primary;
+}
