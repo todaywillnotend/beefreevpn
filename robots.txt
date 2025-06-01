@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://todaywillnotend.github.io/beefreevpn/sitemap-index.xml
-Host: https://todaywillnotend.github.io
+Sitemap: https://beefreevpn.ru/sitemap-index.xml
+Host: https://beefreevpn.ru
