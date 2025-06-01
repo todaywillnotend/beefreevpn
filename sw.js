@@ -27,21 +27,21 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-9a1973ed98d608a16d2f.js"
+    "url": "webpack-runtime-b893b506b1a5b88be350.js"
   },
   {
     "url": "framework-cdce76d1477a651fcfdd.js"
   },
   {
-    "url": "app-f7c9a1dc7557340bc143.js"
+    "url": "app-2e82a8a9cefcf500c990.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "11da543d021ace3f2433134d70f8e498"
+    "revision": "3c3e44deb94c1c83f78bde634cbcb25a"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "6679a4f9d5b8dbdea1b048882fa98c1e"
+    "revision": "a67dc266f12e3e4197152214314efe37"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
@@ -146,12 +146,12 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   lastNavigationRequest = event.request.url
 
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^`), ``)
+  pathname = pathname.replace(new RegExp(`^/beefreevpn`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-f7c9a1dc7557340bc143.js`))) {
+  if (!resources || !(await caches.match(`/beefreevpn/app-2e82a8a9cefcf500c990.js`))) {
     return await fetch(event.request)
   }
 
@@ -164,7 +164,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/beefreevpn/offline-plugin-app-shell-fallback/index.html`
   const offlineShellWithKey = workbox.precaching.getCacheKeyForURL(offlineShell)
   return await caches.match(offlineShellWithKey)
 })
