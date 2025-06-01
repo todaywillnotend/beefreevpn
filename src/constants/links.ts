@@ -1,4 +1,4 @@
-export const TELEGRAM_BOT_URL = "https://t.me/BeeFreeVPNBot"; // TODO: Добавить UTM
+export const TELEGRAM_BOT_URL = "https://clck.ru/3MPMbP";
 
 export const SECTION_IDS = {
   HERO: "главная",

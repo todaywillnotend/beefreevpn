@@ -4,6 +4,7 @@ import styles from "./Footer.module.scss";
 import BeeFreeLogo from "../../icons/BeeFreeLogo";
 import TelegramIcon from "../../icons/TelegramIcon";
 import { NavItem, SectionId } from "../../pages/index"; // Импорт типов
+import { TELEGRAM_BOT_URL } from "../../constants/links";
 
 interface FooterProps {
   navItems: NavItem[];
@@ -39,7 +40,7 @@ const Footer: React.FC<FooterProps> = ({ navItems, onNavClick }) => {
           </nav>
 
           <a
-            href="https://t.me/BeeVpnBot" // Ссылка на вашего Telegram бота
+            href={TELEGRAM_BOT_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.telegramLink}

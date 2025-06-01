@@ -32,7 +32,7 @@ const Seo: React.FC<SeoProps> = ({
 
   const metaDescription = description || site.siteMetadata.description;
   const defaultTitle = site.siteMetadata.title;
-  const pageTitle = title ? `${title} | ${defaultTitle}` : defaultTitle;
+  const pageTitle = title ? `${defaultTitle} | ${title}` : defaultTitle;
 
   return (
     <Helmet

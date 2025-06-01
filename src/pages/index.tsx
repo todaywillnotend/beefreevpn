@@ -42,8 +42,8 @@ const IndexPage: React.FC = () => {
 
   return (
     <Layout
-      title="Добро пожаловать"
-      description="BEE FREE VPN - ваш быстрый и безопасный VPN-сервис."
+      title="Ваш VPN-выбор"
+      description="Быстрый, безопасный и анонимный VPN-сервис полностью управляемый вами в Telegram боте @beefreevpnbot"
     >
       <Header
         navItems={navItems}

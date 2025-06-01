@@ -1,4 +1,3 @@
-// gatsby-config.ts
 import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
@@ -6,9 +5,9 @@ const config: GatsbyConfig = {
     title: `BeeFreeVPN`,
     description: `Быстрый, безопасный и анонимный VPN-сервис. Идеальный выбор для вашей свободы в интернете.`,
     author: `BeeFreeVPN Team`, // Добавим автора для SEO
-    siteUrl: `https://todaywillnotend.github.io/beefreevpn/`,
+    siteUrl: `https://beefreevpn.ru/`,
   },
-  pathPrefix: "/beefreevpn",
+  // pathPrefix: "/beefreevpn",
   graphqlTypegen: true,
   plugins: [
     {
@@ -35,8 +34,6 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-robots-txt`, // Для файла robots.txt
       options: {
-        // host: 'https://todaywillnotend.github.io/beefreevpn/', // Уже берется из siteMetadata.siteUrl
-        // sitemap: 'https://todaywillnotend.github.io/beefreevpn/sitemap/sitemap-index.xml', // Автоматически
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
@@ -45,7 +42,7 @@ const config: GatsbyConfig = {
       options: {
         name: `BeeFreeVPN`,
         short_name: `BeeFreeVPN`,
-        start_url: `/beefreevpn/`, // С учетом pathPrefix
+        start_url: `/`, // С учетом pathPrefix
         background_color: `#FFBF00`, // Пример основного цвета
         theme_color: `#FFBF00`,
         display: `standalone`,
@@ -72,6 +69,17 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/images/`, // Используйте ${__dirname} для абсолютного пути
       },
       // __key: "images", // __key генерируется автоматически, можно убрать
+    },
+    {
+      resolve: `gatsby-plugin-yandex-metrika`,
+      options: {
+        trackingId: 102319323,
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true,
+        webvisor: true,
+      },
     },
   ],
 };
